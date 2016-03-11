@@ -1,0 +1,34 @@
+-- Haskell Playground 1.0
+------ 1 ------
+myLast "bubbles"
+
+
+
+
+------ 2 ------
+secondToLast "hey there"
+
+
+
+
+
+------ 3 ------
+elementAt [1,2,3] 0
+
+
+
+
+------ 4 ------
+myLength [1,2,3]
+
+
+
+
+------ 5 ------
+myReverse "hello"
+
+
+
+
+------ 6 ------
+isPalindrome [1,2,1]

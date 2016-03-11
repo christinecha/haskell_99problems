@@ -1,0 +1,12 @@
+name: haskell99problems
+version: 1.0
+cabal-version: 1.6
+build-type: Simple
+license: AllRightsReserved
+stability: experimental
+synopsis: Some simple Haskell definitions to get started
+Executable haskell99problems
+  main-is: Haskell_99problems.hs
+  buildable: True
+  build-depends:
+      base -any
