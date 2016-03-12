@@ -139,7 +139,19 @@ replicateElements list n = fn [] list n 0
       | otherwise      = fn (copy ++ [x] ) (x:xs) n (replCount+1)
 
 ------ 16 ------
+dropEvery :: [a] -> Int -> [a]
+dropEvery [] _ = []
+dropEvery list n = fn [] list n 1
+  where
+    fn :: [a] -> [a] -> Int -> Int -> [a]
+    fn copy (x:[]) n count
+      | count == n = copy
+      | otherwise  = copy ++ [x]
+    fn copy (x:xs) n count
+      | count == n = fn copy (xs) n 1
+      | otherwise  = fn (copy ++ [x]) xs n (count+1)
 
+------ 17 ------
 
 
 

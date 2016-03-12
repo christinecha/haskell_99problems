@@ -140,3 +140,17 @@ replicateElements [1] 10
 
 
 ------ 16 ------
+dropEvery [1,2,3,4,5,6,7,8,9,10] 3
+-- should return [1,2,4,5,7,8,10]
+
+dropEvery "helloxhelloxhello" 6
+-- should return "hellohellohello"
+
+
+
+
+
+
+
+------ 17 ------
+
