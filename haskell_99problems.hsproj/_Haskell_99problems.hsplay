@@ -31,4 +31,52 @@ myReverse "hello"
 
 
 ------ 6 ------
-isPalindrome [1,2,1]
+isPalindrome [1,2,3]
+
+
+------ 7 ------
+myFlatten $ Branch [Elem 1, Elem 2, Elem 3]
+
+
+
+
+
+
+------ 8 ------
+myCompress "hhhaaapppyyy"
+
+
+
+
+
+
+
+
+
+
+
+
+------ 9 ------
+mySublists "hhhaaapppyyy"
+
+
+
+
+
+
+
+------ 10 ------
+myNumberedSublists "hhhaaaaappppyy"
+
+
+
+
+
+
+
+
+
+
+
+
+
