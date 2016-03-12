@@ -56,26 +56,65 @@ mySublists :: (Eq a) => [a] -> [[a]]
 mySublists list = helper [] [] list
   where
     helper :: (Eq a) => [[a]] -> [a] -> [a] -> [[a]]
-    helper new sublist (x:[]) = new ++ [x:sublist]
-    helper new []      (x:y:xs)
-      | x == y    = helper new [x] (y:xs)
-      | otherwise = helper new [x] (y:xs)
+    helper new sublist (x:[])   = new ++ [x:sublist]
+    helper new []      (x:y:xs) = helper new [x] (y:xs)
     helper new sublist (x:y:xs)
       | x == y    = helper new                  (x:sublist) (y:xs)
       | otherwise = helper (new ++ [x:sublist]) []          (y:xs)
  
 ------ 10 ------
 myNumberedSublists :: (Eq a) => [a] -> [(Int, a)]
-myNumberedSublists (x:xs) = helper [] (0, x) (x:xs)
+myNumberedSublists []     = []
+myNumberedSublists (x:xs) = helper [] (1, x) (x:xs)
   where
     helper :: (Eq a) => [(Int, a)] -> (Int, a) -> [a] -> [(Int, a)]
-    helper new (count, letter) (x:[])   = new ++ [(count+1, letter)]
-    helper new (0, letter)     (x:y:xs)
-      | x == letter = helper new (1, x) (y:xs)
-      | otherwise   = helper new (1, x) (y:xs)
+    helper new (count, letter) (x:[])   = new ++ [(count, letter)]
+    helper new (0, letter)     (x:y:xs) = helper new (1, x) (y:xs)
     helper new (count, letter) (x:y:xs)
-      | x == y    = helper new                     (count+1, x) (y:xs)
-      | otherwise = helper (new ++ [((count+1), x)]) (0, x)     (y:xs)
+      | x == y    = helper new                        (count+1, x) (y:xs)
+      | otherwise = helper (new ++ [(count, letter)]) (1, y) (y:xs)
  
+------ 11 ------
+data TupleTree a = Multiple (Int, a) | Single a
+                   deriving (Show)
+                  
+myOptimizedSublists :: [(Int, a)] -> [TupleTree a] 
+myOptimizedSublists list = map fn list
+  where 
+    fn :: (Int, a) -> TupleTree a
+    fn (1, letter) = Single letter
+    fn (count, letter) = Multiple (count, letter)
+
+------ 12 ------
+myUncompress :: [TupleTree a] -> [a]
+myUncompress tree = foldr fn [] tree
+  where
+    fn :: TupleTree a -> [a] -> [a]
+    fn (Multiple (count, a)) acc = helper (count, a) [] ++ acc
+    fn (Single a)            acc = [a] ++ acc
+    
+    helper :: (Int, a) -> [a] -> [a]
+    helper (0, a)     result = result
+    helper (count, a) result = helper (count-1, a) (result ++ [a])
+
+------ 13 ------
+firstInTriple :: (a, b, c) -> a
+firstInTriple (a,_,_) = a
+
+directlyEncoded :: (Eq a) => [a] -> [TupleTree a]
+directlyEncoded (x:xs) = helper [] (1, x) (x:xs)
+  where
+    helper :: (Eq a) => [TupleTree a] -> (Int, a) -> [a] -> [TupleTree a]
+    helper new (count, letter) (x:[])   
+      | count == 1 = new ++ [Single letter]
+      | otherwise  = new ++ [Multiple (count, letter)]
+    helper new (0, letter)     (x:y:xs) = helper new (1, x) (y:xs)
+    helper new (count, letter) (x:y:xs)
+      | x == y     = helper new                                 (count+1, x) (y:xs)
+      | count == 1 = helper (new ++ [Single letter])            (1, y)       (y:xs)
+      | otherwise  = helper (new ++ [Multiple (count, letter)]) (1, y)       (y:xs)
+
+
+
 
 

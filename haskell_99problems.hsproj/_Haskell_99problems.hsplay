@@ -43,13 +43,7 @@ myFlatten $ Branch [Elem 1, Elem 2, Elem 3]
 
 
 ------ 8 ------
-myCompress "hhhaaapppyyy"
-
-
-
-
-
-
+myCompress "hhhaaaaasskeeelll"
 
 
 
@@ -57,7 +51,9 @@ myCompress "hhhaaapppyyy"
 
 
 ------ 9 ------
-mySublists "hhhaaapppyyy"
+mySublists "hhhaaaaasskeeelll"
+
+
 
 
 
@@ -66,7 +62,7 @@ mySublists "hhhaaapppyyy"
 
 
 ------ 10 ------
-myNumberedSublists "hhhaaaaappppyy"
+myNumberedSublists "hhhaaaaasskeeelll"
 
 
 
@@ -74,6 +70,36 @@ myNumberedSublists "hhhaaaaappppyy"
 
 
 
+
+
+
+------ 11 ------
+myOptimizedSublists (it)
+
+
+
+
+
+
+
+
+------ 12 ------
+myUncompress (it)
+
+
+
+
+
+
+
+
+
+
+
+
+
+------ 13 ------
+directlyEncoded "hhhaaaaasskeeelll"
 
 
 
