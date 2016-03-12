@@ -100,9 +100,43 @@ myUncompress (it)
 
 ------ 13 ------
 directlyEncoded "hhhaaaaasskeeelll"
+directlyEncoded [1,2,2,3]
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+------ 14 ------
+duplicateElements [1,2,3]
+duplicateElements "hello"
+
+
+
+
+
+
+
+
+
+
+
+------ 15 ------
+replicateElements [1,2,3] 3
+replicateElements [1] 10
+
+
+
+
+
+
+
+------ 16 ------

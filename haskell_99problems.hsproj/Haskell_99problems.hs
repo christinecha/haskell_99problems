@@ -114,6 +114,39 @@ directlyEncoded (x:xs) = helper [] (1, x) (x:xs)
       | count == 1 = helper (new ++ [Single letter])            (1, y)       (y:xs)
       | otherwise  = helper (new ++ [Multiple (count, letter)]) (1, y)       (y:xs)
 
+------ 14 ------
+duplicateElements :: [a] -> [a]
+duplicateEements  []     = []
+duplicateElements list = fn [] list False
+  where
+    fn :: [a] -> [a] -> Bool -> [a]
+    fn copy (x:[]) _ = copy ++ [x] ++ [x]
+    fn copy (x:xs) wasDoubled
+      | wasDoubled = fn copy xs      False
+      | otherwise  = fn (copy ++ [x] ++ [x]) (x:xs) True
+
+------ 15 ------
+replicateElements :: [a] -> Int -> [a]
+replicateEements  []   _ = []
+replicateElements list n = fn [] list n 0
+  where
+    fn :: [a] -> [a] -> Int -> Int -> [a]
+    fn copy (x:[]) n replCount 
+      | replCount == n = copy
+      | otherwise      = fn (copy ++ [x] ) (x:[]) n (replCount+1)
+    fn copy (x:xs) n replCount
+      | replCount == n = fn copy xs      n 0
+      | otherwise      = fn (copy ++ [x] ) (x:xs) n (replCount+1)
+
+------ 16 ------
+
+
+
+
+
+
+
+
 
 
 
