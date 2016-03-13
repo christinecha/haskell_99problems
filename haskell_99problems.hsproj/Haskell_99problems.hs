@@ -152,9 +152,29 @@ dropEvery list n = fn [] list n 1
       | otherwise  = fn (copy ++ [x]) xs n (count+1)
 
 ------ 17 ------
+splitAfter :: [a] -> Int -> [[a]]
+splitAfter []   _ = []
+splitAfter list n = fn [] [] list n 1
+  where
+    fn :: [a] -> [a] -> [a] -> Int -> Int -> [[a]]
+    fn p1 p2 (x:[]) n count = [p1] ++ [p2 ++ [x]]
+    fn p1 p2 (x:xs) n count
+      | count <= n = fn (p1 ++ [x]) p2          xs n (count+1)
+      | otherwise  = fn p1          (p2 ++ [x]) xs n (count+1)
 
-
-
+------ 18 ------
+slice :: [a] -> Int -> Int -> [a]
+slice []   x     y     = []
+slice list index count = fn list (index, count) 0 []
+  where
+    fn :: [a] -> (Int, Int) -> Int -> [a] -> [a]
+    fn (x:[]) (index, count) n copy
+      | n < (count+index) && n >= index = copy ++ [x]
+      | otherwise                       = copy
+    fn (x:xs) (index, count) n copy
+      | n ==  (count+index)             = copy
+      | n < (count+index) && n >= index = fn xs (index, count) (n+1) (copy ++ [x])
+      | otherwise                       = fn xs (index, count) (n+1) copy
 
 
 
