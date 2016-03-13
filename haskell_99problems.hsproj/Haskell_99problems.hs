@@ -213,8 +213,22 @@ removeAt (x:xs) n
       | count == n = fn xs n (count+1) (x, copy)
       | otherwise  = fn xs n (count+1) (elem, (copy ++ [x]))
  
+------ 21 ------
+insertAt :: [a] -> [a] -> Int -> [a]
+insertAt []   []    _ = []
+insertAt []   toAdd _ = toAdd
+insertAt list []    _ = list
+insertAt list toAdd n = fn list toAdd (n - 1) 0 []
+  where
+    fn :: [a] -> [a] -> Int -> Int -> [a] -> [a]
+    fn (x:[]) toAdd n count copy
+      | count == n = copy ++ [x] ++ toAdd
+      | otherwise  = copy ++ [x]
+    fn (x:xs) toAdd n count copy
+      | count == n = fn xs toAdd n (count+1) (copy ++ [x] ++ toAdd)
+      | otherwise  = fn xs toAdd n (count+1) (copy ++ [x])
 
-
+------ 22 ------
 
 
 

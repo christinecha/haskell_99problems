@@ -209,4 +209,28 @@ removeAt "booyah" 3
 
 
 
+
+
+
+
+
+------ 21 ------
+insertAt "hllo" "e" 1
+-- should return "hello"
+insertAt [1,2,3] [5] 2
+
+
+
+
+
+
+
+
+
+
+
+------ 22 ------
+
+
+
 ---
