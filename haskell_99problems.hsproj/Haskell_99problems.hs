@@ -176,8 +176,29 @@ slice list index count = fn list (index, count) 0 []
       | n < (count+index) && n >= index = fn xs (index, count) (n+1) (copy ++ [x])
       | otherwise                       = fn xs (index, count) (n+1) copy
 
+------ 19 ------
+rotateList :: [a] -> Int -> [a]
+rotateList [] _   = []
+rotateList list 0 = list
+rotateList list n
+  | n > (length list) = list
+  | otherwise         = fm list (length list) $ fn list n 0 []
+  where
+    fn :: [a] -> Int -> Int -> [a] -> [a]
+    fn (x:[]) n m copy = copy ++ [x]
+    fn (x:xs) n m copy
+      | m >= n    = fn xs n (m+1) (copy ++ [x])
+      | otherwise = fn xs n (m+1) copy
+    
+    fm :: [a] -> Int -> [a] -> [a]
+    fm (x:[]) origLength copy
+      | (length copy) >= origLength = copy
+      | otherwise                   = copy ++ [x]
+    fm (x:xs) origLength copy
+      | (length copy) >= origLength = copy
+      | otherwise                    = fm xs origLength (copy ++ [x])
 
-
+------ 20 ------
 
 
 

@@ -168,3 +168,39 @@ slice [1,2,3] 0 3
 slice [1,2,3] 0 1
 slice "haskell" 2 5
 slice "omg" 1 1
+
+
+
+
+
+
+
+
+
+------ 19 ------
+rotateList [1,2,3,4,5] 1
+rotateList [] 1
+rotateList "bubbles" 5
+rotateList "bubbles" 823
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------ 20 ------
+
+
+
+---
