@@ -199,6 +199,28 @@ rotateList list n
       | otherwise                    = fm xs origLength (copy ++ [x])
 
 ------ 20 ------
+removeAt :: [a] -> Int -> (a, [a])
+removeAt []     _ = error "hey, you can't do that!"
+removeAt (x:xs) n 
+  | n > (length (x:xs)) = error "hey, you can't do that!"
+  | otherwise           = fn (x:xs) n 0 (x, [])
+  where
+    fn :: [a] -> Int -> Int -> (a, [a]) -> (a, [a])
+    fn (x:[]) n count (elem, copy)
+      | count == n = (x, copy)
+      | otherwise  = (elem, (copy ++ [x]))
+    fn (x:xs) n count (elem, copy)
+      | count == n = fn xs n (count+1) (x, copy)
+      | otherwise  = fn xs n (count+1) (elem, (copy ++ [x]))
+ 
+
+
+
+
+
+
+
+
 
 
 
